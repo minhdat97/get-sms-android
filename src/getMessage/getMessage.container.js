@@ -55,6 +55,12 @@ class GetMessageContainer extends Component {
       if (!hasPermissions) {
         return false;
       }
+      hasPermissions = await PermissionsAndroid.check(
+        PermissionsAndroid.PERMISSIONS.RECEIVE_SMS,
+      );
+      if (!hasPermissions) {
+        return false;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -69,6 +75,7 @@ class GetMessageContainer extends Component {
         [
           PermissionsAndroid.PERMISSIONS.READ_SMS,
           PermissionsAndroid.PERMISSIONS.SEND_SMS,
+          PermissionsAndroid.PERMISSIONS.RECEIVE_SMS,
         ],
         {
           title: 'Example App SMS Features',
@@ -122,7 +129,7 @@ class GetMessageContainer extends Component {
     return (
       <View style={styles.view1Container}>
         <View style={styles.view2Container}>
-          <Text style={styles.welcome}>Latest Messages</Text>
+          <Text style={styles.welcome}>Tin nhắn</Text>
           {/* <Button title="refresh list" onPress={this.listSMS} /> */}
         </View>
         <ScrollView>

@@ -9,19 +9,24 @@ class GetMessage extends Component {
   render() {
     const {smsList} = this.props;
     return smsList.map(sms => {
+      const currentDate = new Date(sms.date);
       return (
         <View style={styles.view1Style} key={sms._id}>
-          <Text>From: {sms.address}</Text>
-          <Text>Body: {sms.body}</Text>
+          <Text>SĐT: {sms.address}</Text>
+          <Text>Nội dung: {sms.body}</Text>
           {/* <Text>Id: {sms._id}</Text> */}
-          <View style={styles.view2Style}>
+          {/* <View style={styles.view2Style}>
             <Text>Date timestamp: {sms.date}</Text>
-            {/* <Button
+            <Button
             title="copy date"
             onPress={() => Clipboard.setString(sms.date.toString())}
-          /> */}
-          </View>
-          <Text>Date (readable): {new Date(sms.date).toString()}</Text>
+          />
+          </View> */}
+          <Text>
+            Ngày: {currentDate.getHours()}h{currentDate.getMinutes()}p -{' '}
+            {currentDate.getDate()}/{currentDate.getMonth()}/
+            {currentDate.getFullYear()}
+          </Text>
         </View>
       );
     });
